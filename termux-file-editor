@@ -1,0 +1,12 @@
+#!/bin/bash
+echo $1
+if [[ "$1" == *".map" ]]; then
+	termux-open "$1" --content-type text/html
+else
+if [[ "$1" == *".gz" ]]; then
+	gunzip "$1"
+	termux-open "$(echo $1 | sed s/.gz//g)" --content-type text/html
+else
+	micro "$1"
+fi
+fi
