@@ -25,7 +25,7 @@ which chromium || {
 	echo "+----------------------+"
 }
 echo ">> Downloading the latest release of single-file-cli"
-wget "https://github.com/gildas-lormeau/single-file-cli/releases/latest/download/single-file-x86_64-linux" -O ./single-file
+wget "https://github.com/gildas-lormeau/single-file-cli/releases/latest/download/single-file-$(uname -m)-linux" -O ./single-file
 echo ">> Fixing up permissions"
 chmod a+x ./single-file
 echo ">> Should be done now. Set up your credentials in bot.ini, enter the venv with 'source bin/activate' and run the bot like 'python3 ./bot.py'"
