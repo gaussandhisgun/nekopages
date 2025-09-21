@@ -7,9 +7,15 @@ echo "                            "
 echo "                 by gravitos"
 echo ""
 echo ">> Looking for required binaries"
-which which || { echo "Install which"; exit 1 }
-which wget || { echo "Install wget"; exit 1 }
-which python3 || { echo "Install python3"; exit 1 }
+which which || { 
+	echo "Install which"; exit 1 
+}
+which wget || { 
+	echo "Install wget"; exit 1 
+}
+which python3 || {
+	echo "Install python3"; exit 1
+}
 echo ">> Setting up python venv"
 python3 -m venv .
 echo ">> Entering venv"
