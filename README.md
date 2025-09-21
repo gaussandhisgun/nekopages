@@ -31,6 +31,18 @@ chmod a+x ./autosetup.sh
 
 Откройте autosetup.sh и повторяйте за скриптом.
 
+### Termux (серверная часть)
+
+Нет лишнего компьютера на Linux? Не проблема. Серверная часть может быть установлена в контейнер [proot-distro](https://github.com/termux/proot-distro) внутри [Termux](https://f-droid.org/ru/packages/com.termux/) (проверил на Debian). Нагрузите свой второй телефон, пусть лежит дома и работает на благо знаниям!
+
+1. Установите [Termux](https://f-droid.org/ru/packages/com.termux/)
+2. Обновите базы пакетов - `apt update`
+3. Установите proot-distro - `apt install proot-distro`
+4. Установите контейнер с Debian - `proot-distro install debian`
+5. Войдите в контейнер - `proot-distro login debian`
+6. Установите всё необходимое - `apt install git chromium which python3 python3-venv python3-pip micro`
+7. Выполните автоматическую установку
+
 ## Настройка
 
 Настройки бота хранятся в файле bot.ini:
@@ -47,7 +59,7 @@ chmod a+x ./autosetup.sh
 
 Напишите боту поисковый запрос или URL-адрес. Подождите, пока он загрузит страницу в диалог с вами, скачайте её на локальное устройство, распакуйте с помощью `gunzip` и откройте в веб-браузере на ваш выбор.
 
-### Termux
+### Termux (клиентская часть)
 
 С ботом поставляется скрипт `termux-file-editor` - это "оболочка" для Termux, которая полуавтоматически распаковывает загруженный GZip и открывает его в браузере для удобоваримого чтения.
 
