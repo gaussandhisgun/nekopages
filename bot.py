@@ -11,11 +11,16 @@ searx_instance = cfg.get("Main", "searx_instance")
 group_id = cfg.getint("Main", "group_id")
 group_token = cfg.get("Main", "group_token")
 my_id = None
+crawler_params = ""
 try:
     my_id = cfg.getint("Main", "my_id")
 except Exception as e:
     print(str(e) + " - operating in public mode (NOT RECOMMENDED)")
     my_id = None
+try:
+    crawler_params = cfg.get("Main", "crawler_params").split()
+except Exception as e:
+    print("No crawler params found")
 
 def save_webpage(url):
     if url.find(" ") > 0 or url.find(".") == -1:
@@ -30,7 +35,14 @@ def save_webpage(url):
     if os.path.exists(file + ".gz"):
         os.remove(file + ".gz")
         print("Removed .map.gz")
-    subprocess.run(["./single-file", url, file])
+    if crawler_params == "" or crawler_params == None:
+        subprocess.run(["./single-file", url, file])
+    else:
+        print(crawler_params)
+        params = ["./single-file", url, file]
+        params = params + crawler_params
+        print(params)
+        subprocess.run(params)
     print("Saved")
     subprocess.run(["gzip", file])
     if os.path.exists(file + ".gz"):
@@ -47,6 +59,7 @@ def main():
 
     longpoll = VkBotLongPoll(vk_session, group_id)
     upload = vk_api.VkUpload(vk_session)
+    print(crawler_params)
     while True:
         try:
             print("Waiting for requests")
