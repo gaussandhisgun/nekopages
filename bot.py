@@ -13,7 +13,7 @@ group_token = cfg.get("Main", "group_token")
 my_id = None
 crawler_params = ""
 try:
-    my_id = cfg.getint("Main", "my_id")
+    my_id = cfg.get("Main", "my_id").split()
 except Exception as e:
     print(str(e) + " - operating in public mode (NOT RECOMMENDED)")
     my_id = None
@@ -82,7 +82,7 @@ def main():
                         message="Downloading webpage..."
                     )
 
-                    if my_id == None or event.obj.message["peer_id"] == my_id:
+                    if my_id == None or str(event.obj.message["peer_id"]) in my_id:
 
                         try:
                             print('Текст:', event.obj.message["text"])
